@@ -1,0 +1,26 @@
+[project]
+name = "data-eng-skill"
+version = "0.1.0"
+description = "Minimalist toolbox for AI-assisted Data Engineering"
+authors = [
+    { name = "Johan Marin" }
+]
+requires-python = ">=3.12"
+
+[tool.commitizen]
+name = "cz_gitmoji"
+version = "0.1.0"
+tag_format = "v$version"
+update_changelog_on_bump = true
+
+[tool.ruff]
+line-length = 88
+target-version = "py312"
+exclude = ["*.ipynb"]
+
+[tool.ruff.lint]
+ignore = ["E731"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["architect", "developer"]

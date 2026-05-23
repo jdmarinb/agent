@@ -1,0 +1,17 @@
+# Master Skill Registry
+# Agent-agnostic discovery index for data engineering skills.
+
+version: "3.0"
+
+skills:
+  - id: "arch:core"
+    path: "architect/"
+    name: "Architect"
+    tags: [hierarchy, decision, cost, client-first]
+    description: "Architectural decision hierarchy and client alignment."
+
+  - id: "dev:core"
+    path: "developer/"
+    name: "Developer"
+    tags: [paradigm, vectorized, functional, python, polars, quality]
+    description: "Minimalist development: Vectorized > Functional paradigms."

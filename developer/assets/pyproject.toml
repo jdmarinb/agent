@@ -1,0 +1,34 @@
+# Commitizen Configuration Template
+# Copy to project root and adjust version/scope as needed
+
+[tool.commitizen]
+name = "cz_customize"
+version = "0.0.1"
+tag_format = "$version"
+
+[tool.commitizen.customize]
+cz_type_order = ["feat", "fix", "breaking", "revert", "refactor", "docs", "test", "style", "chore", "perf", "build", "ci", "infra", "security", "dep", "dead", "wip"]
+
+[tool.commitizen.customize.cz_types]
+# Semantic Versioning Impact
+feat = { description = "✨ Introduce new feature", semver = "minor" }
+fix = { description = "🐛 Fix a bug", semver = "patch" }
+breaking = { description = "💥 Introduce incompatible changes (BREAKING CHANGE)", semver = "major" }
+revert = { description = "⏪️ Revert changes", semver = "patch" }
+perf = { description = "⚡️ Improve performance", semver = "patch" }
+security = { description = "🔒️ Fix security or privacy issues", semver = "patch" }
+
+# Development and Maintenance (semver = none)
+refactor = { description = "♻️ Refactor code (no functional change)", semver = "none" }
+test = { description = "✅ Add, update, or pass tests", semver = "none" }
+docs = { description = "📝 Add or update documentation", semver = "none" }
+style = { description = "💄 UI changes and code formatting (style/lint)", semver = "none" }
+chore = { description = "⚙️ General maintenance tasks (config, dependencies)", semver = "none" }
+wip = { description = "🚧 Work in progress", semver = "none" }
+
+# DevOps and Infrastructure (semver = none)
+build = { description = "📦️ Changes affecting the build system or dependencies", semver = "none" }
+ci = { description = "💚 Add or update CI/CD configuration", semver = "none" }
+infra = { description = "🧱 Infrastructure related changes (IaC)", semver = "none" }
+dep = { description = "⬆️/⬇️ Dependency changes (upgrade/downgrade)", semver = "none" }
+dead = { description = "⚰️ Remove dead code or files", semver = "none" }
