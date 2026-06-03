@@ -58,5 +58,5 @@ For deep implementation details, schemas, and specific tool patterns, refer to:
 - **[Pipeline Migration Skill](../migration/SKILL.md):** Standalone skill for legacy to modern migrations (Hive, Cloud, Relational, etc.).
 
 ## 7. Templates & Assets
-Standard configuration files available in `./assets/`:
-- `Makefile`, `pyproject.toml`, `pre-commit-config.yaml`.
+Standard configuration and boilerplate files available in `./assets/`:
+- `Makefile`, `pyproject.toml`, `pre-commit-config.yaml`, `logger.py` (Wide Event Logger).
