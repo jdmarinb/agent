@@ -15,3 +15,9 @@ skills:
     name: "Developer"
     tags: [paradigm, vectorized, functional, python, polars, quality]
     description: "Minimalist development: Vectorized > Functional paradigms."
+
+  - id: "migration:core"
+    path: "migration/"
+    name: "Migration Specialist"
+    tags: [hive, spark, parity, cloud, migration, relational]
+    description: "Comprehensive pipeline migration framework covering Hive, Cloud-to-Cloud, Relational-to-Lake, and Batch-to-Streaming."

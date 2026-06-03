@@ -1,8 +1,8 @@
 # Makefile - data-eng-skill (Based on GlobalTask)
-# Optimizado para entornos con Git/Bash (Windows/Linux)
+# Optimized for environments with Git/Bash (Windows/Linux)
 
 VENV_DIR := .venv
-# Herramientas que sustituyen la necesidad de Sonar y archivos de requerimientos
+# Tools that replace the need for Sonar and requirements files
 DEV_TOOLS := ruff pytest pre-commit commitizen cz-conventional-gitmoji bandit detect-secrets pyupgrade polars "pyspark==3.5.3" python-dateutil
 
 ifeq ($(OS),Windows_NT)
@@ -15,16 +15,16 @@ endif
 
 .PHONY: all setup test lint clean commit install-uv activate check install-java install-aws
 
-# Ejecución por defecto
+# Default execution
 all: setup
 
-# Instala Java 17 (requerido por PySpark 3.5)
+# Install Java 17 (required by PySpark 3.5)
 install-java:
-	@echo "--- Verificando Java 17+ ---"
+	@echo "--- Verifying Java 17+ ---"
 	@if java -version 2>&1 | grep -q '"17\|"21\|"22'; then \
-		echo "✅ Java 17+ ya instalado"; \
+		echo "✅ Java 17+ already installed"; \
 	else \
-		echo "--- Instalando Java 17 ---"; \
+		echo "--- Installing Java 17 ---"; \
 		if [ "$(OS)" = "Windows_NT" ]; then \
 			winget install EclipseAdoptium.Temurin.17.JDK --accept-source-agreements --accept-package-agreements; \
 		elif [ "$$(uname)" = "Darwin" ]; then \
@@ -33,16 +33,16 @@ install-java:
 			sudo apt-get update && sudo apt-get install -y openjdk-17-jdk || \
 			sudo yum install -y java-17-amazon-corretto-devel; \
 		fi; \
-		echo "✅ Java 17 instalado. Reinicia tu terminal para que JAVA_HOME se actualice."; \
+		echo "✅ Java 17 installed. Restart your terminal to update JAVA_HOME."; \
 	fi
 
-# Instala AWS CLI v2
+# Install AWS CLI v2
 install-aws:
-	@echo "--- Verificando AWS CLI ---"
+	@echo "--- Verifying AWS CLI ---"
 	@if aws --version 2>/dev/null; then \
-		echo "✅ AWS CLI ya instalado"; \
+		echo "✅ AWS CLI already installed"; \
 	else \
-		echo "--- Instalando AWS CLI v2 ---"; \
+		echo "--- Installing AWS CLI v2 ---"; \
 		if [ "$(OS)" = "Windows_NT" ]; then \
 			winget install Amazon.AWSCLI --accept-source-agreements --accept-package-agreements; \
 		elif [ "$$(uname)" = "Darwin" ]; then \
@@ -53,27 +53,27 @@ install-aws:
 			sudo /tmp/aws/install --update && \
 			rm -rf /tmp/awscliv2.zip /tmp/aws; \
 		fi; \
-		echo "✅ AWS CLI instalado"; \
+		echo "✅ AWS CLI installed"; \
 	fi
 
-# Instala uv si no está (crucial para la velocidad del setup)
+# Install uv if missing (crucial for setup speed)
 install-uv:
 	@uv --version > /dev/null 2>&1 || (echo "--- Installing uv ---" && curl -LsSf https://astral.sh/uv/install.sh | sh)
 
-# Configura TODO el entorno de forma inteligente (idempotente)
+# Configure the ENTIRE environment intelligently (idempotent)
 setup: install-uv install-java install-aws
 	@if [ ! -d "$(VENV_DIR)" ]; then \
-		echo "--- Creando venv ---" && \
+		echo "--- Creating venv ---" && \
 		uv venv $(VENV_DIR) --python 3.12 --seed; \
 	fi
-	@echo "--- Instalando/Actualizando herramientas ---"
+	@echo "--- Installing/Updating tools ---"
 	uv pip install $(DEV_TOOLS)
-	@echo "--- Configurando hooks de Git (Commit, Push, Message) ---"
+	@echo "--- Configuring Git hooks (Commit, Push, Message) ---"
 	uv run pre-commit install
 	uv run pre-commit install --hook-type commit-msg
 	uv run pre-commit install --hook-type pre-push
 	@echo ""
-	@echo ">>> Setup terminado. Para activar el entorno corre: <<<"
+	@echo ">>> Setup finished. To activate the environment run: <<<"
 ifeq ($(OS),Windows_NT)
 	@echo "    PowerShell : .venv\Scripts\Activate.ps1"
 	@echo "    CMD        : .venv\Scripts\activate.bat"
@@ -82,7 +82,7 @@ else
 	@echo "    source .venv/bin/activate"
 endif
 
-# Muestra el comando de activación correcto
+# Show the correct activation command
 activate:
 ifeq ($(OS),Windows_NT)
 	@echo "source .venv/Scripts/activate"
@@ -90,37 +90,37 @@ else
 	@echo "source .venv/bin/activate"
 endif
 
-# Corre todos los hooks de pre-commit sobre todos los archivos
+# Run all pre-commit hooks on all files
 check:
-	@echo "--- Corriendo pre-commit sobre todos los archivos ---"
+	@echo "--- Running pre-commit on all files ---"
 	uv run pre-commit run --all-files
 
-# Linter y Seguridad
+# Linter and Security
 lint:
-	@echo "--- [RUFF] Corrigiendo estilo y errores lógicos ---"
+	@echo "--- [RUFF] Fixing style and logical errors ---"
 	uv run ruff check . --fix --unsafe-fixes
-	@echo "--- [RUFF] Aplicando formato de código ---"
+	@echo "--- [RUFF] Applying code formatting ---"
 	uv run ruff format .
-	@echo "--- [BANDIT] Escaneo de seguridad (SAST) ---"
+	@echo "--- [BANDIT] Security scan (SAST) ---"
 	uv run bandit -r architect/ developer/ -lll
 
-# Pruebas unitarias
+# Unit tests
 test:
-	@echo "--- Ejecutando tests con pytest ---"
+	@echo "--- Running tests with pytest ---"
 	@if [ -d "tests" ]; then \
 		uv run pytest; \
 	else \
 		echo "No tests directory found."; \
 	fi
 
-# Commit estandarizado con Gitmoji
+# Standardized commit with Gitmoji
 commit:
-	@echo "--- Iniciando commitizen ---"
+	@echo "--- Starting commitizen ---"
 	uv run cz commit
 
-# Limpieza total del espacio de trabajo
+# Total workspace cleanup
 clean:
-	@echo "--- Limpiando archivos temporales y venv ---"
+	@echo "--- Cleaning temporary files and venv ---"
 	@if [ -d "$(VENV_DIR)" ]; then rm -rf $(VENV_DIR); fi
 	find . -type d -name "__pycache__" -exec rm -rf {} +
 	find . -type d -name ".pytest_cache" -exec rm -rf {} +

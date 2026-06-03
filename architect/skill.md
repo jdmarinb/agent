@@ -10,21 +10,23 @@ This framework prioritizes project success by aligning technical decisions with 
 
 ## Hierarchy of Priorities
 
-When designing or modifying a solution, evaluate decisions against this hierarchy (1 is highest):
+When designing or modifying a solution, evaluate decisions against this hierarchy:
 
 | Priority | Principle | Core Logic |
 |:---|:---|:---|
-| **1** | **Requirement Fulfillment** | The solution MUST meet the functional and non-functional requirements defined by the client first. |
-| **2** | **Cost Optimization** | Seek the most economical architecture that fulfills requirements. Optimize memory usage and code quality. Disable unnecessary features. |
-| **3** | **Security** | Implement essential security patterns (encryption, identity, access control) without over-engineering for the specific context. |
-| **4** | **Technical Debt Reduction** | Prioritize maintainability and simplicity. The code must be easy to read and manage by any engineer (or AI). |
-| **5** | **Vendor Lock-in Mitigation** | Favor open standards only when they don't aggressively increase technical debt or contradict client-allowed technologies. |
+| **1** | **Requirement Fulfillment** | The solution MUST be correct and meet functional/non-functional requirements first. |
+| **2** | **Cost & Resource Optimization** | Optimize memory, speed, and service costs. Use lazy evaluation and pushdown optimizations. |
+| **3** | **Technical Debt Reduction** | Prioritize maintainability, simplicity, and readability. Avoid over-engineering. |
+| **4** | **Process Simplification** | Streamline workflows and minimize the number of external services/dependencies. |
 
 ## Strategy for Resource Optimization (Priority 2)
 
-- **Surgical Code:** Write only what is necessary.
-- **Feature Pruning:** Identify and disable components or services that do not contribute to the primary objective.
-- **Resource Efficiency:** Prioritize memory-efficient libraries and patterns (e.g., streaming over in-memory batch processing).
+- **Lazy Evaluation:** Prefer lazy APIs (Polars LazyFrame, Spark DataFrames) to allow the engine to optimize the execution plan.
+- **Pushdown Optimizations:** Ensure predicate and filter pushdowns are active to minimize data transfer.
+- **Shuffle Reduction:** Limit or eliminate operations that trigger data shuffling across the network.
+- **Broadcast Joins:** Use broadcast joins for small tables to avoid expensive shuffles.
+- **Smart Caching:** Use cache/persist only when it reduces redundant computation and lowers total cost.
+- **Surgical Code:** Write only what is necessary (YAGNI).
 
 ## Maintenance and Debt (Priority 4)
 
