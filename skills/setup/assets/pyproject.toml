@@ -7,12 +7,6 @@ authors = [
 ]
 requires-python = ">=3.12"
 
-[tool.commitizen]
-name = "cz_gitmoji"
-version = "0.1.0"
-tag_format = "v$version"
-update_changelog_on_bump = true
-
 [tool.ruff]
 line-length = 88
 target-version = "py312"
@@ -21,6 +15,10 @@ exclude = ["*.ipynb"]
 [tool.ruff.lint]
 ignore = ["E731"]
 
+[tool.codespell]
+skip = ".git,*.egg-info,build,dist"
+ignore-words-list = "nd,ro"  # Custom words to ignore
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
-pythonpath = ["architect", "developer"]
+pythonpath = ["skills"]

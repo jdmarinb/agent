@@ -5,19 +5,37 @@ version: "3.0"
 
 skills:
   - id: "arch:core"
-    path: "architect/"
+    path: "skills/architect/"
     name: "Architect"
     tags: [hierarchy, decision, cost, client-first]
     description: "Architectural decision hierarchy and client alignment."
 
   - id: "dev:core"
-    path: "developer/"
+    path: "skills/developer/"
     name: "Developer"
     tags: [paradigm, vectorized, functional, python, polars, quality]
     description: "Minimalist development: Vectorized > Functional paradigms."
 
   - id: "migration:core"
-    path: "migration/"
+    path: "skills/migration/"
     name: "Migration Specialist"
     tags: [hive, spark, parity, cloud, migration, relational]
     description: "Comprehensive pipeline migration framework covering Hive, Cloud-to-Cloud, Relational-to-Lake, and Batch-to-Streaming."
+
+  - id: "skill-design"
+    path: "skills/skill-design/"
+    name: "Skill Designer"
+    tags: [anthropic, skills, open-standard, metadata, allowed-tools]
+    description: "Create Claude Code skills following the Anthropic Agent Skills Open Standard. Covers metadata, progressive disclosure, allowed-tools, and multi-file structure."
+
+  - id: "notebook-minimal"
+    path: "skills/notebook-minimal/"
+    name: "Notebook Minimal"
+    tags: [rag, memory, cli, presentations, dashboards, minimal]
+    description: "CLI-based NotebookLM alternative with persistent memory, RAG, and visual artifact generation. Technical Brutalist-Minimalist aesthetic."
+
+  - id: "setup"
+    path: "skills/setup/"
+    name: "Project Setup"
+    tags: [init, pre-commit, pyproject, configuration, bootstrap]
+    description: "Initialize new Python 3.12+ projects with pyproject.toml, pre-commit hooks, and validation tooling."
