@@ -26,5 +26,5 @@ This agent is specialized in minimalist Data Engineering, strictly prioritizing 
 - **Minimalist Development:** Implementation using Polars, Spark, and DuckDB.
 
 ## Skills Directory
-- [Architect](../architect/skill.md)
-- [Developer](../developer/skill.md)
+- [Architect Decisions](../skills/architect-decisions/SKILL.md)
+- [Developer](../skills/developer/SKILL.md)

@@ -1,0 +1,12 @@
+{
+  "name": "DevOps",
+  "description": "Handles tooling, CI/CD, and project setup",
+  "tools": ["read", "write", "glob", "bash"],
+  "skills": [
+    "skills/project-setup/"
+  ],
+  "steering": [
+    "steering/tech.md",
+    "steering/structure.md"
+  ]
+}

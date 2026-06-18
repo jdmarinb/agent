@@ -24,7 +24,7 @@ git commit -m "Initial commit"
 ```
 
 ### 2. Create .gitignore
-Copy from `skills/setup/assets/.gitignore` or create minimal:
+Copy from `skills/devops/assets/.gitignore` or create minimal:
 ```
 __pycache__/
 *.py[cod]
@@ -39,7 +39,7 @@ build/
 ```
 
 ### 3. Copy Configuration Files
-From `skills/setup/assets/`:
+From `skills/devops/assets/`:
 - `pyproject.toml` - project metadata + tool configs
 - `.pre-commit-config.yaml` - pre-commit hooks
 
@@ -58,7 +58,7 @@ makevalidate  # or ruff check && ruff format --check && bandit -c pyproject.toml
 ## Configuration Templates Location
 
 ```
-skills/setup/assets/
+skills/devops/assets/
 ├── pyproject.toml          # Ruff, codespell, pytest config
 ├── .pre-commit-config.yaml # All hooks (security, lint, format)
 ├── .gitignore             # Python project ignores
@@ -110,7 +110,7 @@ After initial setup, verify:
 ## Asset Copy Commands
 
 ```bash
-cp skills/setup/assets/pyproject.toml .
-cp skills/setup/assets/.pre-commit-config.yaml .
-cp skills/setup/assets/.gitignore .
+cp skills/devops/assets/pyproject.toml .
+cp skills/devops/assets/.pre-commit-config.yaml .
+cp skills/devops/assets/.gitignore .
 ```

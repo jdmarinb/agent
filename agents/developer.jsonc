@@ -1,0 +1,12 @@
+{
+  "name": "Developer",
+  "description": "Implements code following vectorized paradigms",
+  "tools": ["read", "write", "edit", "glob", "grep", "bash"],
+  "skills": [
+    "skills/code-implementation/"
+  ],
+  "steering": [
+    "steering/code-conventions.md",
+    "steering/tech.md"
+  ]
+}

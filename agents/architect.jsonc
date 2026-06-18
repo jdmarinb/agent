@@ -1,0 +1,13 @@
+{
+  "name": "Architect",
+  "description": "Evaluates technical decisions against priority hierarchy",
+  "tools": ["read", "write", "glob", "grep"],
+  "skills": [
+    "skills/architect-decisions/"
+  ],
+  "steering": [
+    "steering/code-conventions.md",
+    "steering/tech.md",
+    "steering/structure.md"
+  ]
+}

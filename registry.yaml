@@ -4,38 +4,38 @@
 version: "3.0"
 
 skills:
-  - id: "arch:core"
-    path: "skills/architect/"
-    name: "Architect"
-    tags: [hierarchy, decision, cost, client-first]
-    description: "Architectural decision hierarchy and client alignment."
+  - id: "arch:decisions"
+    path: "skills/architect-decisions/"
+    name: "Architectural Decisions"
+    tags: [architecture, decision, hierarchy]
+    description: "HOW to evaluate technical decisions against priority hierarchy."
 
   - id: "dev:core"
-    path: "skills/developer/"
-    name: "Developer"
-    tags: [paradigm, vectorized, functional, python, polars, quality]
-    description: "Minimalist development: Vectorized > Functional paradigms."
+    path: "skills/code-implementation/"
+    name: "Code Implementation"
+    tags: [implementation, code, vectorized, polars]
+    description: "HOW to implement code. Reference steering/code-conventions.md."
 
   - id: "migration:core"
     path: "skills/migration/"
-    name: "Migration Specialist"
-    tags: [hive, spark, parity, cloud, migration, relational]
-    description: "Comprehensive pipeline migration framework covering Hive, Cloud-to-Cloud, Relational-to-Lake, and Batch-to-Streaming."
+    name: "Pipeline Migration"
+    tags: [migration, etl, pipeline]
+    description: "HOW to migrate data pipelines between technologies."
 
   - id: "skill-design"
     path: "skills/skill-design/"
     name: "Skill Designer"
-    tags: [anthropic, skills, open-standard, metadata, allowed-tools]
-    description: "Create Claude Code skills following the Anthropic Agent Skills Open Standard. Covers metadata, progressive disclosure, allowed-tools, and multi-file structure."
+    tags: [skills, metadata, allowed-tools]
+    description: "HOW to create skills following Agent Skills Open Standard."
 
-  - id: "notebook-minimal"
-    path: "skills/notebook-minimal/"
-    name: "Notebook Minimal"
-    tags: [rag, memory, cli, presentations, dashboards, minimal]
-    description: "CLI-based NotebookLM alternative with persistent memory, RAG, and visual artifact generation. Technical Brutalist-Minimalist aesthetic."
+  - id: "knowledge-base"
+    path: "skills/knowledge-base/"
+    name: "Knowledge Base"
+    tags: [rag, memory, cli, presentations]
+    description: "HOW to use CLI-based RAG with persistent memory."
 
-  - id: "setup"
-    path: "skills/setup/"
+  - id: "project-setup"
+    path: "skills/project-setup/"
     name: "Project Setup"
-    tags: [init, pre-commit, pyproject, configuration, bootstrap]
-    description: "Initialize new Python 3.12+ projects with pyproject.toml, pre-commit hooks, and validation tooling."
+    tags: [tooling, ci-cd, setup, pre-commit]
+    description: "HOW to setup tooling, CI/CD, and project initialization."

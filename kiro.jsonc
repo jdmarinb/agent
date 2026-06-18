@@ -1,0 +1,49 @@
+{
+  "name": "Data Engineering Agent",
+  "description": "Minimalist data engineering agent with specialized subagents",
+  "tools": ["@subagent"],
+  "toolsSettings": {
+    "subagent": {
+      "availableAgents": ["architect", "developer", "devops"],
+      "trustedAgents": ["architect", "developer"]
+    }
+  },
+  "agents": {
+    "architect": {
+      "name": "Architect",
+      "description": "Evaluates technical decisions against priority hierarchy. Use when designing architecture or choosing between options.",
+      "tools": ["read", "write", "glob", "grep"],
+      "toolsSettings": {
+        "fileCreation": {
+          "allow": true
+        }
+      }
+    },
+    "developer": {
+      "name": "Developer",
+      "description": "Implements code following vectorized paradigms. Use when writing, refactoring, or implementing features.",
+      "tools": ["read", "write", "edit", "glob", "grep", "bash"],
+      "skills": [
+        "skills/code-implementation/"
+      ],
+      "toolsSettings": {
+        "shell": {
+          "allow": true
+        }
+      }
+    },
+    "devops": {
+      "name": "DevOps",
+      "description": "Handles tooling, CI/CD, and project setup. Use when initializing projects, configuring hooks, or setting up pipelines.",
+      "tools": ["read", "write", "glob", "bash"],
+      "skills": [
+        "skills/project-setup/"
+      ],
+      "toolsSettings": {
+        "shell": {
+          "allow": true
+        }
+      }
+    }
+  }
+}
