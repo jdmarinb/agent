@@ -10,12 +10,6 @@ skills:
     tags: [architecture, decision, hierarchy]
     description: "HOW to evaluate technical decisions against priority hierarchy."
 
-  - id: "dev:core"
-    path: "skills/code-implementation/"
-    name: "Code Implementation"
-    tags: [implementation, code, vectorized, polars]
-    description: "HOW to implement code. Reference steering/code-conventions.md."
-
   - id: "migration:core"
     path: "skills/migration/"
     name: "Pipeline Migration"
@@ -39,3 +33,9 @@ skills:
     name: "Project Setup"
     tags: [tooling, ci-cd, setup, pre-commit]
     description: "HOW to setup tooling, CI/CD, and project initialization."
+
+  - id: "logging"
+    path: "skills/logging/"
+    name: "Logging"
+    tags: [logging, json, observability]
+    description: "HOW to implement structured logging. Wide Event pattern."

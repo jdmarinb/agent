@@ -1,12 +1,14 @@
 {
   "name": "Developer",
-  "description": "Implements code following vectorized paradigms",
+  "description": "Implements code following architect specs (TDD/SDD implicit)",
   "tools": ["read", "write", "edit", "glob", "grep", "bash"],
   "skills": [
-    "skills/code-implementation/"
+    "skills/project-setup/",
+    "skills/migration/",
+    "skills/logging/"
   ],
   "steering": [
-    "steering/code-conventions.md",
-    "steering/tech.md"
+    "steering/tech.md",
+    "steering/code-conventions.md"
   ]
 }

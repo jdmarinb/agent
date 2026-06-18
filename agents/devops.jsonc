@@ -1,12 +1,12 @@
 {
   "name": "DevOps",
-  "description": "Handles tooling, CI/CD, and project setup",
+  "description": "Handles CI/CD, hooks, boilerplates and best practices",
   "tools": ["read", "write", "glob", "bash"],
   "skills": [
     "skills/project-setup/"
   ],
   "steering": [
     "steering/tech.md",
-    "steering/structure.md"
+    "steering/code-conventions.md"
   ]
 }

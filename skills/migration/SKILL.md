@@ -13,20 +13,6 @@ description: >
 Universal guide for migrating data pipelines between any pair of technologies.
 The process is consistent regardless of origin and destination — only the technical details change. Refer to the corresponding section in `references/` based on the detected migration type.
 
-## Migration Type Detection
-
-Identify the origin → destination pair and load the reference file:
-
-| Type | Reference File |
-|---|---|
-| Cloudera/Hive → AWS EMR/Iceberg | `references/cloudera-to-aws.md` |
-| On-prem → Cloud (Generic) | `references/onprem-to-cloud.md` |
-| Cloud → Cloud (e.g., AWS → GCP) | `references/cloud-to-cloud.md` |
-| Relational DB → Data Lake | `references/relational-to-datalake.md` |
-| Batch → Streaming | `references/batch-to-streaming.md` |
-
-If the pair is not listed, apply the generic process from this guide and adapt the technical steps accordingly.
-
 ---
 
 ## Strict Order of Execution

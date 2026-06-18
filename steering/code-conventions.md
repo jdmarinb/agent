@@ -4,14 +4,25 @@ inclusion: always
 
 # Engineering Principles
 
-## Skills Activation
+## Project Structure
 
-| When... | Use Skill... |
-|:--------|:------------|
-| Writing code | [Code Implementation](../skills/code-implementation/SKILL.md) |
-| Designing architecture | [Architectural Decisions](../skills/architect-decisions/SKILL.md) |
-| Initializing project | [Project Setup](../skills/project-setup/SKILL.md) |
-| Creating skills | [Skill Designer](../skills/skill-design/SKILL.md) |
+### Brevity
+- Short is better. Fewer lines = lower maintenance.
+- Duplicate trivial code (<10 lines) rather than fragmenting.
+
+### Classes as Containers
+- Use classes exclusively as containers for vectorized/functional methods.
+- No internal state complexity.
+- No deep inheritance.
+
+### Iterators
+- Use Iterators/Generators and List/Dict Comprehensions.
+- Avoid `for` loops for data transformations.
+
+### Anti-SOLID
+- No abstractions of abstractions.
+- No interfaces, factories, or deep inheritance.
+- No premature abstractions.
 
 ## 1. Vectorized > Functional
 - Always prefer vectorized/columnar operations over iteration.
@@ -46,18 +57,9 @@ class MyProcessor:  # create wrapper before 3 uses
 - Reduce technical debt whenever possible.
 
 ## 4. Wide Logs
+- Use [Logging Skill](../skills/logging/SKILL.md).
 - One unit = One structured JSON event upon completion.
 - Accumulate metadata in memory and flush once.
-- Include: trace_id, duration_ms, context, event_type.
-
-```python
-logger.info(json.dumps({
-    "trace_id": trace_id,
-    "duration_ms": elapsed,
-    "event_type": "task_complete",
-    "context": {"rows": count}
-}))
-```
 
 ## 5. Cross-Cutting Optimizations
 - Lazy Evaluation: Prefer lazy execution for query optimization.
