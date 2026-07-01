@@ -78,3 +78,98 @@ df.lazy().filter(col("status") == "active").select("id", "name").join(other, on=
 # DON'T: Collect early
 df.collect().filter(...)
 ```
+
+## 6. Error Handling
+
+**Paradigm Integrity — NEVER mix paradigms in error handling.**
+
+- NEVER use `try-except` to fallback from vectorized to iterative code.
+- NEVER catch errors to retry with a slower method.
+- Handle errors inside the expression tree (`when/then/otherwise`, `fill_null`, `coalesce`).
+- Streaming/Functional: Railway Oriented Programming — functions return `(Success, Failure)` tuple or Result object, never raise.
+- DLQ Pattern: Create error columns via `pl.when().then().otherwise()` to keep execution vectorized.
+
+```python
+# FORBIDDEN: Paradigm switching
+try:
+    result = df.with_columns((pl.col("val") / pl.col("factor")).alias("res"))
+except ComputeError:
+    result = df.map_rows(lambda row: safe_div(row[0], row[1]))
+
+# CORRECT: Handle inside expression tree
+result = df.with_columns(
+    pl.when(pl.col("factor") != 0)
+    .then(pl.col("val") / pl.col("factor"))
+    .otherwise(None)
+    .alias("res")
+)
+```
+
+## 7. Module Organization
+
+- Function used in ONE module → lives in THAT module.
+- Function used in 2 modules → evaluate if truly the same logic.
+- Function used in 3+ modules → move to `common/`.
+- NEVER create `utils.py`, `helpers.rs`, `common.go` without 3+ real consumers.
+- Limits: <500 lines per module, <50 lines per function.
+- Private helpers at beginning or end of file.
+- Flat is better than nested.
+
+```
+# BAD: Unnecessary separation
+src/
+├── users.py
+├── user_validators.py      # Only used by users.py
+└── user_transformers.py    # Only used by users.py
+
+# GOOD: Cohesive
+src/
+└── users.py                # Contains validators + transformers inline
+```
+
+## 8. Reuse Criteria
+
+Create shared utility ONLY if ALL conditions are true:
+1. Repeated 3+ times in DIFFERENT modules.
+2. Has >5 lines of complexity.
+3. Improves real readability.
+4. Makes sense independent of context.
+5. Is not just to comply with DRY or SOLID.
+
+If ANY condition is NO → keep inline. Copy-paste is better than wrong abstraction.
+
+## 9. Testing
+
+- One Logic = One Test Function (Engine Pattern).
+- Zero Logic in Tests — no `if/else` inside test functions.
+- Single Source of Truth: all variations in `TEST_SCENARIOS` dict.
+- NEVER: `test_case_a`, `test_case_b`, `test_case_c` for the same function.
+- NEVER: hardcoded data inside test functions.
+- NEVER: manual `try-except` in tests (use `pytest.raises`).
+- See [Testing Skill](../skills/testing/SKILL.md) for implementation.
+
+## 10. Commits
+
+- Format: `<type>(<scope>): <description>`
+- Types: `feat`, `fix`, `perf`, `refactor`, `test`, `docs`, `chore`
+- NEVER emojis in commits, code, or responses.
+
+## 11. Agent Interaction
+
+- NEVER apply changes before confirming with user.
+
+## 12. Python Stack
+
+| Use Case | Tool |
+|----------|------|
+| Excel files | `calamine` |
+| JSON serialization | `orjson` |
+| Schema validation (streaming) | `msgspec` |
+| DataFrames | `polars` |
+| Business rules on DataFrames | `pandera` (vectorized) |
+| Logging | `structlog` |
+
+**Tiered Validation (Performance First):**
+1. Native schema in `pl.read_*()` — handles 90% at Rust level.
+2. Pandera — only for complex business rules (ranges, regex, cross-column).
+3. NEVER Pydantic or row-based loops to validate DataFrames.

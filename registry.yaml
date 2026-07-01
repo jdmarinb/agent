@@ -39,3 +39,9 @@ skills:
     name: "Logging"
     tags: [logging, json, observability]
     description: "HOW to implement structured logging. Wide Event pattern."
+
+  - id: "testing"
+    path: "skills/testing/"
+    name: "Testing"
+    tags: [testing, pytest, parametrize, data-driven]
+    description: "HOW to implement tests using the Engine Pattern."

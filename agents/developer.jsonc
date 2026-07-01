@@ -5,7 +5,8 @@
   "skills": [
     "skills/project-setup/",
     "skills/migration/",
-    "skills/logging/"
+    "skills/logging/",
+    "skills/testing/"
   ],
   "steering": [
     "steering/tech.md",
