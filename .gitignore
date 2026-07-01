@@ -1,0 +1,6 @@
+sessions/
+extensions/
+settings/
+argv.json
+.cli_bash_history
+*.lock
